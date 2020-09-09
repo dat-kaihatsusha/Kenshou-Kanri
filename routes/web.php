@@ -59,6 +59,8 @@ Route::get('/getformeditemployees/{idemployees}', 'EmployeesController@getformed
 Route::post('/updateemployees/{idemployees}', 'EmployeesController@updateemployees');
 Route::get('/getdeleteemployees/{idemployees}', 'EmployeesController@getdeleteemployees');
 
+Route::post('/timkiememployees', 'EmployeesController@timkiememployees');
+
 // Danh hiệu thi đua
 Route::get('/getformdanhhieuthidua', 'DanhhieuthiduaController@GetForm');
 Route::post('/savedanhhieuthidua', 'DanhhieuthiduaController@Save');

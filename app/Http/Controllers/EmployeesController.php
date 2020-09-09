@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use DB;
 use App\Employees;
+use App\Danhhieuthidua;
 use App\Http\Requests;
 use Session;
 use Illuminate\Support\Facades\Redirect;
@@ -66,5 +67,28 @@ class EmployeesController extends Controller
         DB::table('tb_employees')->where('id',$id)->delete();
         Session::put('message','Xóa employees thành công');
         return Redirect::to('/getshowallemployees');
+    }
+
+    public function timkiememployees(Request $request){
+        $data = $request->all();
+        // $employees = Employees::find($data['hoten']);
+        $id_employees = DB::table('tb_employees')->where('hoten', $data['hoten'])->value('id');
+
+        // $danhhiethiduacuanhanvien = DB::table('tb_danhhieuthidua')->join('tb_employees', 'tb_danhhieuthidua.id_nhanvien','=','tb_employees.id')->where('tb_danhhieuthidua.id_nhanvien', $id_employees)->get();
+        // return view('employees.getshowallemployees')->with('danhhiethiduacuanhanvien',$danhhiethiduacuanhanvien);
+
+        $getdanhhiethiduacuanhanvien = [
+            DB::table('tb_danhhieuthidua')->join('tb_employees', 'tb_danhhieuthidua.id_nhanvien','=','tb_employees.id')->where('tb_danhhieuthidua.id_nhanvien', $id_employees)->value('tendanhhieu'),
+            DB::table('tb_danhhieuthidua')->join('tb_employees', 'tb_danhhieuthidua.id_nhanvien','=','tb_employees.id')->where('tb_danhhieuthidua.id_nhanvien', $id_employees)->value('namdatdanhhieu'),
+            DB::table('tb_danhhieuthidua')->join('tb_employees', 'tb_danhhieuthidua.id_nhanvien','=','tb_employees.id')->where('tb_danhhieuthidua.id_nhanvien', $id_employees)->value('masoquyetdinh'),
+            DB::table('tb_danhhieuthidua')->join('tb_employees', 'tb_danhhieuthidua.id_nhanvien','=','tb_employees.id')->where('tb_danhhieuthidua.id_nhanvien', $id_employees)->value('noicap'),
+            DB::table('tb_danhhieuthidua')->join('tb_employees', 'tb_danhhieuthidua.id_nhanvien','=','tb_employees.id')->where('tb_danhhieuthidua.id_nhanvien', $id_employees)->value('id_nhanvien'),
+            DB::table('tb_danhhieuthidua')->join('tb_employees', 'tb_danhhieuthidua.id_nhanvien','=','tb_employees.id')->where('tb_danhhieuthidua.id_nhanvien', $id_employees)->value('ghichu')
+        ];
+
+        $showallemployees = Employees::orderBy('id','ASC')->get();
+
+        return view('employees.getshowallemployees')->with('getdanhhiethiduacuanhanvien',$getdanhhiethiduacuanhanvien)->with('showallemployees',$showallemployees);
+
     }
 }

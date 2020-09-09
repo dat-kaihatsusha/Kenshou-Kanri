@@ -34,5 +34,32 @@
             </tr>
         @endforeach
     </table>
+    <form action="{{ URL::to('/timkiememployees') }}" method="POST">
+        @csrf
+        <input type="text" name="hoten" placeholder="Nhập tên nhân viên tìm kiếm"><br>
+        <input type="submit" name="Search">
+    </form>
+
+
+    @if (isset($getdanhhiethiduacuanhanvien))
+    <table border="1" cellspacing='0px'>
+        <tr>
+            <td>Tên danh hiệu</td>
+            <td>Năm đạt danh hiệu</td>
+            <td>Mã số quyết định</td>
+            <td>Nơi cấp</td>
+            <td>ID nhân viên</td>
+            <td>Ghi chú</td>
+        </tr>
+        <tr>
+            <td>{{ $getdanhhiethiduacuanhanvien[0] }}</td>
+            <td>{{ $getdanhhiethiduacuanhanvien[1] }}</td>
+            <td>{{ $getdanhhiethiduacuanhanvien[2] }}</td>
+            <td>{{ $getdanhhiethiduacuanhanvien[3] }}</td>
+            <td>{{ $getdanhhiethiduacuanhanvien[4] }}</td>
+            <td>{{ $getdanhhiethiduacuanhanvien[5] }}</td>
+        </tr>
+    </table>
+    @endif
 </body>
 </html>
