@@ -26,6 +26,7 @@ class DonviController extends Controller
         $donvi->diachi = $data['diachi'];
         $donvi->save();
         
+
         Session::put('message', 'Thêm đơn vị thành công!');
         return redirect::to('/getshowalldonvi');
     }
@@ -33,7 +34,7 @@ class DonviController extends Controller
 
     public function getshowalldonvi(){
         $showalldonvi = Donvi::orderBy('id','ASC')->get();
-        return view('donvi.showalldonvi')->with('showalldonvi',$showalldonvi);
+        return view('donvi.showalldonvi',['showalldonvi'=>$showalldonvi]);
     }
 
     public function editdonvi($iddonvi)
@@ -50,6 +51,7 @@ class DonviController extends Controller
         $update->diachi = $data['diachi'];
         $update->save();
 
+        // return view('donvi.z_thunghiem',['data'=>$data,'update'=>$update]);
         session::put('message', 'Update đơn vị mới thành công!');
         return Redirect::to('/getshowalldonvi');
     }

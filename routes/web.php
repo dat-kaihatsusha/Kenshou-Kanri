@@ -24,6 +24,8 @@ route::get('/getdeletedonvi/{id}','DonviController@getdeletedonvi');
 
 
 
+
+
 // Trình cấp
 Route::get('/getformtrinhcap', 'TrinhcapController@GetFrom');
 Route::post('/savetrinhcap', 'TrinhcapController@Save');
@@ -51,7 +53,7 @@ Route::get('/getdeletephongban/{idphongban}', 'PhongbanController@getdeletephong
 
 // employees
 Route::get('/getformemployees', 'EmployeesController@GetForm');
-Route::post('/saveemployees', 'EmployeesController@Save');
+Route::post('/saveemployees', 'EmployeesController@Save'); 
 Route::get('/getshowallemployees',   'EmployeesController@getshowallemployees');
 Route::get('/getformeditemployees/{idemployees}', 'EmployeesController@getformeditemployees');
 Route::post('/updateemployees/{idemployees}', 'EmployeesController@updateemployees');
