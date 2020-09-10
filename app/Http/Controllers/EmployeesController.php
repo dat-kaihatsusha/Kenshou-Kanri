@@ -71,7 +71,7 @@ class EmployeesController extends Controller
 
     public function timkiememployees(Request $request){
         $data = $request->all();
-        // $employees = Employees::find($data['hoten']);
+        // $employees = Employees::find($data['hoten'])->value('id');
         $id_employees = DB::table('tb_employees')->where('hoten', $data['hoten'])->value('id');
 
         // $danhhiethiduacuanhanvien = DB::table('tb_danhhieuthidua')->join('tb_employees', 'tb_danhhieuthidua.id_nhanvien','=','tb_employees.id')->where('tb_danhhieuthidua.id_nhanvien', $id_employees)->get();
